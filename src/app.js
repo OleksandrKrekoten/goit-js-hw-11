@@ -1,7 +1,7 @@
 import ImagesApiService from './js/ImagesApiService'
 import Notiflix from 'notiflix'
 import { createMarkupInfo } from './js/renderMarkup'
-
+import './styles.css'
 
 
 
