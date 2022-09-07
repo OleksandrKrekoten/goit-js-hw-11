@@ -10,11 +10,10 @@ const imagesApiService = new ImagesApiService()
     form: document.querySelector('#search-form'),
     input: document.querySelector('[name="searchQuery"]'),
     submitBtn: document.querySelector('[type="submit"]'),
-     gallery: document.querySelector('.gallery')
-
-
+     gallery: document.querySelector('.gallery'),
+     loadMoreBtn: document.querySelector('.load-more')
 }
-
+refs.loadMoreBtn.addEventListener('click', onLoadMore)
 refs.form.addEventListener('submit', onSubmit)
 refs.input.addEventListener('input', (e) =>imagesApiService.query = e.target.value)
 
@@ -24,7 +23,8 @@ function onSubmit(e) {
     imagesApiService.feachImages()
         .then(result => {
         renderMarkup (result)
-    }).catch(error => {
+            })
+            .catch(error => {
       Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
     })
         
@@ -32,10 +32,12 @@ function onSubmit(e) {
  
 function renderMarkup(result) {
     const info = createMarkupInfo(result)
- refs.gallery.innerHTML = info
+ refs.gallery.insertAdjacentHTML = (beforeend,info)
 } 
  
-
+function onLoadMore() {
+    
+}
  
 
 function resetMarkup() {
