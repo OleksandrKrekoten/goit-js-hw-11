@@ -13,7 +13,7 @@ const imagesApiService = new ImagesApiService()
      gallery: document.querySelector('.gallery'),
      loadMoreBtn: document.querySelector('.load-more')
 }
-refs.loadMoreBtn.addEventListener('click', onLoadMore)
+// refs.loadMoreBtn.addEventListener('click', onLoadMore)
 refs.form.addEventListener('submit', onSubmit)
 refs.input.addEventListener('input', (e) =>imagesApiService.query = e.target.value)
 
@@ -32,12 +32,12 @@ function onSubmit(e) {
  
 function renderMarkup(result) {
     const info = createMarkupInfo(result)
- refs.gallery.insertAdjacentHTML = (beforeend,info)
+ refs.gallery.innerHTML = info
 } 
  
-function onLoadMore() {
+// function onLoadMore() {
     
-}
+// }
  
 
 function resetMarkup() {
