@@ -24,11 +24,13 @@ function onSubmit(e) {
   resetMarkup()
     imagesApiService.feachImages()
       .then(result => {
-        
-        Notiflix.Notify.success(`Hooray! We found  ${result.data.total}images.`);
+        Notiflix.Notify.success(`Hooray! We found  ${result.data.totalHits}images.`);
           renderMarkup(result)
           simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-          refs.loadMoreBtn.classList.remove('d-none')
+        refs.loadMoreBtn.classList.remove('d-none')
+        if (result.data.totalHits < imagesApiService.per_page) {
+            refs.loadMoreBtn.classList.add('d-none')
+          }
             })
       .catch(error => {
               refs.loadMoreBtn.classList.add('d-none')
@@ -50,7 +52,16 @@ function onLoadMore() {
           renderMarkup(result)
           simpleLightBox = new SimpleLightbox('.gallery a').refresh();
           refs.loadMoreBtn.classList.remove('d-none')
-            })
+          const pages = Math.ceil(result.data.totalHits / imagesApiService.per_page)
+          
+          
+          if( imagesApiService.page == pages) {
+            refs.loadMoreBtn.classList.add('d-none')
+          }
+        }).catch(error => {
+          console.log(error);
+        })
+  
 }
  
 
