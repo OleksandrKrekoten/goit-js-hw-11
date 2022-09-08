@@ -13,6 +13,10 @@ form{
     justify-content: center;
    
 }
+a{
+    text-decoration: none;
+}
+
 .gallery{
     display: flex;
     align-items: center;
@@ -21,15 +25,19 @@ form{
     padding: 30px;
 }
 .photo-card{
-width: 25%;
+width: 30rem;
+height:30rem;
+
 
 }
 .overflow{
+    border-radius: 30px;
     overflow: hidden;
 }
 .card-image{
 width: 100%;
 height: 400px;
+
 transition: transform 400ms ease-out
 }
 .card-image:hover{
@@ -37,9 +45,15 @@ transition: transform 400ms ease-out
 }
 .info{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black ;
+
 }
 .info-item{
     display: flex;
+   
+    
     flex-direction: column;
     margin-right: 2rem;
 }
