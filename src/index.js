@@ -22,8 +22,12 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore)
 function onSubmit(e) {
     e.preventDefault()
   resetMarkup()
+  imagesApiService.page = 1
     imagesApiService.feachImages()
       .then(result => {
+        if (result.data.totalHits === 0) {
+        return Promise.reject(new Error());
+        }
         Notiflix.Notify.success(`Hooray! We found  ${result.data.totalHits}images.`);
           renderMarkup(result)
           simpleLightBox = new SimpleLightbox('.gallery a').refresh();
@@ -48,7 +52,7 @@ function onLoadMore() {
   imagesApiService.incrementPage()
   simpleLightBox.destroy()
     imagesApiService.feachImages()
-        .then(result => {
+      .then(result => {
           renderMarkup(result)
           simpleLightBox = new SimpleLightbox('.gallery a').refresh();
           refs.loadMoreBtn.classList.remove('d-none')

@@ -19,13 +19,7 @@ export default class ImagesApiService {
               per_page: this.per_page,
             page: this.page
             }
-        }).then(response => {
-            if (response.data.hits.length === 0) {
-                return Promise.reject(new Error());
-
-            }
-            return response
-            } )
+        })
             
     }
     incrementPage() { 
